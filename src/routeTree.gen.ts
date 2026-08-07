@@ -10,33 +10,167 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AtendimentoRouteImport } from './routes/atendimento'
+import { Route as ComoTrabalhamosRouteImport } from './routes/como-trabalhamos'
+import { Route as CulturaRouteImport } from './routes/cultura'
+import { Route as FebracisRouteImport } from './routes/febracis'
+import { Route as FerramentasRouteImport } from './routes/ferramentas'
+import { Route as PrimeiroDiaRouteImport } from './routes/primeiro-dia'
+import { Route as ProcessosRouteImport } from './routes/processos'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as RotinasRouteImport } from './routes/rotinas'
+import { Route as TimeRouteImport } from './routes/time'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtendimentoRoute = AtendimentoRouteImport.update({
+  id: '/atendimento',
+  path: '/atendimento',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoTrabalhamosRoute = ComoTrabalhamosRouteImport.update({
+  id: '/como-trabalhamos',
+  path: '/como-trabalhamos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CulturaRoute = CulturaRouteImport.update({
+  id: '/cultura',
+  path: '/cultura',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FebracisRoute = FebracisRouteImport.update({
+  id: '/febracis',
+  path: '/febracis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FerramentasRoute = FerramentasRouteImport.update({
+  id: '/ferramentas',
+  path: '/ferramentas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrimeiroDiaRoute = PrimeiroDiaRouteImport.update({
+  id: '/primeiro-dia',
+  path: '/primeiro-dia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessosRoute = ProcessosRouteImport.update({
+  id: '/processos',
+  path: '/processos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RotinasRoute = RotinasRouteImport.update({
+  id: '/rotinas',
+  path: '/rotinas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TimeRoute = TimeRouteImport.update({
+  id: '/time',
+  path: '/time',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
+  '/cultura': typeof CulturaRoute
+  '/febracis': typeof FebracisRoute
+  '/ferramentas': typeof FerramentasRoute
+  '/primeiro-dia': typeof PrimeiroDiaRoute
+  '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
+  '/rotinas': typeof RotinasRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
+  '/cultura': typeof CulturaRoute
+  '/febracis': typeof FebracisRoute
+  '/ferramentas': typeof FerramentasRoute
+  '/primeiro-dia': typeof PrimeiroDiaRoute
+  '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
+  '/rotinas': typeof RotinasRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/atendimento': typeof AtendimentoRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
+  '/cultura': typeof CulturaRoute
+  '/febracis': typeof FebracisRoute
+  '/ferramentas': typeof FerramentasRoute
+  '/primeiro-dia': typeof PrimeiroDiaRoute
+  '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
+  '/rotinas': typeof RotinasRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/atendimento'
+    | '/como-trabalhamos'
+    | '/cultura'
+    | '/febracis'
+    | '/ferramentas'
+    | '/primeiro-dia'
+    | '/processos'
+    | '/recursos'
+    | '/rotinas'
+    | '/time'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/atendimento'
+    | '/como-trabalhamos'
+    | '/cultura'
+    | '/febracis'
+    | '/ferramentas'
+    | '/primeiro-dia'
+    | '/processos'
+    | '/recursos'
+    | '/rotinas'
+    | '/time'
+  id:
+    | '__root__'
+    | '/'
+    | '/atendimento'
+    | '/como-trabalhamos'
+    | '/cultura'
+    | '/febracis'
+    | '/ferramentas'
+    | '/primeiro-dia'
+    | '/processos'
+    | '/recursos'
+    | '/rotinas'
+    | '/time'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AtendimentoRoute: typeof AtendimentoRoute
+  ComoTrabalhamosRoute: typeof ComoTrabalhamosRoute
+  CulturaRoute: typeof CulturaRoute
+  FebracisRoute: typeof FebracisRoute
+  FerramentasRoute: typeof FerramentasRoute
+  PrimeiroDiaRoute: typeof PrimeiroDiaRoute
+  ProcessosRoute: typeof ProcessosRoute
+  RecursosRoute: typeof RecursosRoute
+  RotinasRoute: typeof RotinasRoute
+  TimeRoute: typeof TimeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +182,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atendimento': {
+      id: '/atendimento'
+      path: '/atendimento'
+      fullPath: '/atendimento'
+      preLoaderRoute: typeof AtendimentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-trabalhamos': {
+      id: '/como-trabalhamos'
+      path: '/como-trabalhamos'
+      fullPath: '/como-trabalhamos'
+      preLoaderRoute: typeof ComoTrabalhamosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cultura': {
+      id: '/cultura'
+      path: '/cultura'
+      fullPath: '/cultura'
+      preLoaderRoute: typeof CulturaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/febracis': {
+      id: '/febracis'
+      path: '/febracis'
+      fullPath: '/febracis'
+      preLoaderRoute: typeof FebracisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ferramentas': {
+      id: '/ferramentas'
+      path: '/ferramentas'
+      fullPath: '/ferramentas'
+      preLoaderRoute: typeof FerramentasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/primeiro-dia': {
+      id: '/primeiro-dia'
+      path: '/primeiro-dia'
+      fullPath: '/primeiro-dia'
+      preLoaderRoute: typeof PrimeiroDiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processos': {
+      id: '/processos'
+      path: '/processos'
+      fullPath: '/processos'
+      preLoaderRoute: typeof ProcessosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rotinas': {
+      id: '/rotinas'
+      path: '/rotinas'
+      fullPath: '/rotinas'
+      preLoaderRoute: typeof RotinasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/time': {
+      id: '/time'
+      path: '/time'
+      fullPath: '/time'
+      preLoaderRoute: typeof TimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AtendimentoRoute: AtendimentoRoute,
+  ComoTrabalhamosRoute: ComoTrabalhamosRoute,
+  CulturaRoute: CulturaRoute,
+  FebracisRoute: FebracisRoute,
+  FerramentasRoute: FerramentasRoute,
+  PrimeiroDiaRoute: PrimeiroDiaRoute,
+  ProcessosRoute: ProcessosRoute,
+  RecursosRoute: RecursosRoute,
+  RotinasRoute: RotinasRoute,
+  TimeRoute: TimeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
