@@ -68,6 +68,8 @@
 
 :root {
   --radius: 0.9rem;
+  --app-sidebar-width: 17rem;
+
 
   /* #0D1B3E */
   --navy: oklch(0.239 0.069 268.5);
