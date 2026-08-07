@@ -17,6 +17,7 @@ import { Route as FebracisRouteImport } from './routes/febracis'
 import { Route as FerramentasRouteImport } from './routes/ferramentas'
 import { Route as PrimeiroDiaRouteImport } from './routes/primeiro-dia'
 import { Route as ProcessosRouteImport } from './routes/processos'
+import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as RotinasRouteImport } from './routes/rotinas'
 import { Route as TimeRouteImport } from './routes/time'
 
@@ -60,6 +61,11 @@ const ProcessosRoute = ProcessosRouteImport.update({
   path: '/processos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RotinasRoute = RotinasRouteImport.update({
   id: '/rotinas',
   path: '/rotinas',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/ferramentas': typeof FerramentasRoute
   '/primeiro-dia': typeof PrimeiroDiaRoute
   '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
   '/rotinas': typeof RotinasRoute
   '/time': typeof TimeRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/ferramentas': typeof FerramentasRoute
   '/primeiro-dia': typeof PrimeiroDiaRoute
   '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
   '/rotinas': typeof RotinasRoute
   '/time': typeof TimeRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/ferramentas': typeof FerramentasRoute
   '/primeiro-dia': typeof PrimeiroDiaRoute
   '/processos': typeof ProcessosRoute
+  '/recursos': typeof RecursosRoute
   '/rotinas': typeof RotinasRoute
   '/time': typeof TimeRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/ferramentas'
     | '/primeiro-dia'
     | '/processos'
+    | '/recursos'
     | '/rotinas'
     | '/time'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/ferramentas'
     | '/primeiro-dia'
     | '/processos'
+    | '/recursos'
     | '/rotinas'
     | '/time'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/ferramentas'
     | '/primeiro-dia'
     | '/processos'
+    | '/recursos'
     | '/rotinas'
     | '/time'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   FerramentasRoute: typeof FerramentasRoute
   PrimeiroDiaRoute: typeof PrimeiroDiaRoute
   ProcessosRoute: typeof ProcessosRoute
+  RecursosRoute: typeof RecursosRoute
   RotinasRoute: typeof RotinasRoute
   TimeRoute: typeof TimeRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProcessosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rotinas': {
       id: '/rotinas'
       path: '/rotinas'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   FerramentasRoute: FerramentasRoute,
   PrimeiroDiaRoute: PrimeiroDiaRoute,
   ProcessosRoute: ProcessosRoute,
+  RecursosRoute: RecursosRoute,
   RotinasRoute: RotinasRoute,
   TimeRoute: TimeRoute,
 }
