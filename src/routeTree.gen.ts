@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CulturaRouteImport } from './routes/cultura'
 import { Route as FebracisRouteImport } from './routes/febracis'
+import { Route as TimeRouteImport } from './routes/time'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const FebracisRoute = FebracisRouteImport.update({
   path: '/febracis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TimeRoute = TimeRouteImport.update({
+  id: '/time',
+  path: '/time',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
+  '/time': typeof TimeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cultura' | '/febracis'
+  fullPaths: '/' | '/cultura' | '/febracis' | '/time'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cultura' | '/febracis'
-  id: '__root__' | '/' | '/cultura' | '/febracis'
+  to: '/' | '/cultura' | '/febracis' | '/time'
+  id: '__root__' | '/' | '/cultura' | '/febracis' | '/time'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CulturaRoute: typeof CulturaRoute
   FebracisRoute: typeof FebracisRoute
+  TimeRoute: typeof TimeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FebracisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/time': {
+      id: '/time'
+      path: '/time'
+      fullPath: '/time'
+      preLoaderRoute: typeof TimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CulturaRoute: CulturaRoute,
   FebracisRoute: FebracisRoute,
+  TimeRoute: TimeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
