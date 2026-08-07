@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FebracisRouteImport } from './routes/febracis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FebracisRoute = FebracisRouteImport.update({
+  id: '/febracis',
+  path: '/febracis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/febracis': typeof FebracisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/febracis': typeof FebracisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/febracis': typeof FebracisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/febracis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/febracis'
+  id: '__root__' | '/' | '/febracis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FebracisRoute: typeof FebracisRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/febracis': {
+      id: '/febracis'
+      path: '/febracis'
+      fullPath: '/febracis'
+      preLoaderRoute: typeof FebracisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FebracisRoute: FebracisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
