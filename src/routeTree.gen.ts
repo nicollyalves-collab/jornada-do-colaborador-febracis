@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CulturaRouteImport } from './routes/cultura'
 import { Route as FebracisRouteImport } from './routes/febracis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CulturaRoute = CulturaRouteImport.update({
+  id: '/cultura',
+  path: '/cultura',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FebracisRoute = FebracisRouteImport.update({
@@ -25,27 +31,31 @@ const FebracisRoute = FebracisRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/febracis'
+  fullPaths: '/' | '/cultura' | '/febracis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/febracis'
-  id: '__root__' | '/' | '/febracis'
+  to: '/' | '/cultura' | '/febracis'
+  id: '__root__' | '/' | '/cultura' | '/febracis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CulturaRoute: typeof CulturaRoute
   FebracisRoute: typeof FebracisRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cultura': {
+      id: '/cultura'
+      path: '/cultura'
+      fullPath: '/cultura'
+      preLoaderRoute: typeof CulturaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/febracis': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CulturaRoute: CulturaRoute,
   FebracisRoute: FebracisRoute,
 }
 export const routeTree = rootRouteImport
