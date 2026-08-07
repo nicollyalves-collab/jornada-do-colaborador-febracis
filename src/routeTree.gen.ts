@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComoTrabalhamosRouteImport } from './routes/como-trabalhamos'
 import { Route as CulturaRouteImport } from './routes/cultura'
 import { Route as FebracisRouteImport } from './routes/febracis'
 import { Route as TimeRouteImport } from './routes/time'
@@ -17,6 +18,11 @@ import { Route as TimeRouteImport } from './routes/time'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComoTrabalhamosRoute = ComoTrabalhamosRouteImport.update({
+  id: '/como-trabalhamos',
+  path: '/como-trabalhamos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CulturaRoute = CulturaRouteImport.update({
@@ -37,12 +43,14 @@ const TimeRoute = TimeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
   '/time': typeof TimeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
   '/time': typeof TimeRoute
@@ -50,20 +58,23 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/como-trabalhamos': typeof ComoTrabalhamosRoute
   '/cultura': typeof CulturaRoute
   '/febracis': typeof FebracisRoute
   '/time': typeof TimeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cultura' | '/febracis' | '/time'
+  fullPaths: '/' | '/como-trabalhamos' | '/cultura' | '/febracis' | '/time'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cultura' | '/febracis' | '/time'
-  id: '__root__' | '/' | '/cultura' | '/febracis' | '/time'
+  to: '/' | '/como-trabalhamos' | '/cultura' | '/febracis' | '/time'
+  id:
+    '__root__' | '/' | '/como-trabalhamos' | '/cultura' | '/febracis' | '/time'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComoTrabalhamosRoute: typeof ComoTrabalhamosRoute
   CulturaRoute: typeof CulturaRoute
   FebracisRoute: typeof FebracisRoute
   TimeRoute: typeof TimeRoute
@@ -76,6 +87,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/como-trabalhamos': {
+      id: '/como-trabalhamos'
+      path: '/como-trabalhamos'
+      fullPath: '/como-trabalhamos'
+      preLoaderRoute: typeof ComoTrabalhamosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cultura': {
@@ -104,6 +122,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComoTrabalhamosRoute: ComoTrabalhamosRoute,
   CulturaRoute: CulturaRoute,
   FebracisRoute: FebracisRoute,
   TimeRoute: TimeRoute,
