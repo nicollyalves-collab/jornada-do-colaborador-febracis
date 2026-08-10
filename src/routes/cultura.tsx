@@ -3,7 +3,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Expand, ImageIcon, Compass, Eye, Gem } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/page-header";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { useJourneyVisit } from "@/lib/journey";
 import { CULTURE_STATEMENTS, CULTURE_GALLERY, type CultureGalleryItem } from "@/data/company";
 
 export const Route = createFileRoute("/cultura")({
@@ -28,7 +27,6 @@ export const Route = createFileRoute("/cultura")({
 const ICONS = [Compass, Eye, Gem];
 
 function CulturaPage() {
-  useJourneyVisit("cultura");
   const [selected, setSelected] = useState<CultureGalleryItem | null>(null);
 
   return (
