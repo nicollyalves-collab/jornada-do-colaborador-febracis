@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Quote } from "lucide-react";
+import { Quote, ChevronDown } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/page-header";
-import { useJourneyVisit } from "@/lib/journey";
-import { TIMELINE, FOUNDERS, FACTS, TRAININGS } from "@/data/company";
+import { TIMELINE, FOUNDERS, FACTS } from "@/data/company";
+import { TRAININGS, TRAININGS_INTRO } from "@/data/trainings";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/febracis")({
   head: () => ({
@@ -24,7 +26,7 @@ export const Route = createFileRoute("/febracis")({
 });
 
 function FebracisPage() {
-  useJourneyVisit("febracis");
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
     <div className="mx-auto max-w-6xl">
@@ -41,9 +43,9 @@ function FebracisPage() {
             className="card-lift reveal glass rounded-2xl p-5"
             style={{ animationDelay: `${i * 80}ms` }}
           >
-            <fact.icon className="size-5 text-gold" />
-            <p className="mt-4 font-display text-xl font-semibold">{fact.value}</p>
-            <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            <fact.icon className="size-4.5 text-gold" />
+            <p className="mt-3 font-display text-lg font-semibold">{fact.value}</p>
+            <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
               {fact.label}
             </p>
           </div>
@@ -56,8 +58,8 @@ function FebracisPage() {
           {TIMELINE.map((entry, i) => (
             <li
               key={entry.year}
-              className="reveal relative pb-8 last:pb-0"
-              style={{ animationDelay: `${i * 100}ms` }}
+              className="reveal relative pb-7 last:pb-0"
+              style={{ animationDelay: `${i * 90}ms` }}
             >
               <span className="absolute -left-[41px] top-1 grid size-4 place-items-center rounded-full border border-gold/60 bg-background">
                 <span className="size-1.5 rounded-full bg-gold" />
@@ -76,12 +78,12 @@ function FebracisPage() {
 
       <div className="mt-14">
         <SectionTitle hint="Liderança da Holding Febracis">Fundadores</SectionTitle>
-        <div className="grid gap-5 lg:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2">
           {FOUNDERS.map((f) => (
             <article key={f.name} className="card-lift glass rounded-2xl p-6">
-              <Quote className="size-5 text-gold/70" />
-              <h3 className="mt-4 font-display text-lg font-semibold">{f.name}</h3>
-              <p className="text-xs uppercase tracking-[0.16em] text-gold">{f.role}</p>
+              <Quote className="size-4.5 text-gold/70" />
+              <h3 className="mt-3 font-display text-base font-semibold">{f.name}</h3>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-gold">{f.role}</p>
               <ul className="mt-4 space-y-2">
                 {f.highlights.map((h) => (
                   <li key={h} className="flex gap-2.5 text-sm text-muted-foreground">
@@ -96,22 +98,43 @@ function FebracisPage() {
       </div>
 
       <div className="mt-14">
-        <SectionTitle hint="Método CIS e principais frentes de formação">
-          Treinamentos e formações
-        </SectionTitle>
-        <div className="grid gap-5 sm:grid-cols-2">
-          {TRAININGS.map((t) => (
-            <article
-              key={t.name}
-              className="card-lift rounded-2xl border border-border/70 bg-card/60 p-6"
-            >
-              <span className="grid size-10 place-items-center rounded-xl border border-gold/30 bg-gold/10">
-                <t.icon className="size-4.5 text-gold" />
-              </span>
-              <h3 className="mt-4 font-display text-base font-semibold">{t.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.text}</p>
-            </article>
-          ))}
+        <SectionTitle>Principais Treinamentos e Formações</SectionTitle>
+        <p className="-mt-3 mb-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          {TRAININGS_INTRO}
+        </p>
+
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {TRAININGS.map((t) => {
+            const expanded = open === t.id;
+            return (
+              <article
+                key={t.id}
+                className="rounded-xl border border-border/70 bg-card/50 p-4 transition-colors duration-300 hover:border-gold/40"
+              >
+                <button
+                  onClick={() => setOpen(expanded ? null : t.id)}
+                  aria-expanded={expanded}
+                  className="flex w-full items-start justify-between gap-3 text-left"
+                >
+                  <h3 className="font-display text-sm font-semibold leading-snug">{t.name}</h3>
+                  <ChevronDown
+                    className={cn(
+                      "mt-0.5 size-4 shrink-0 text-gold transition-transform duration-300",
+                      expanded && "rotate-180",
+                    )}
+                  />
+                </button>
+                <p
+                  className={cn(
+                    "mt-2 text-xs leading-relaxed text-muted-foreground",
+                    !expanded && "line-clamp-2",
+                  )}
+                >
+                  {t.text}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </div>
 
