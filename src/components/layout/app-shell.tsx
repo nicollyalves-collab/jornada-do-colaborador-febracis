@@ -133,18 +133,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </aside>
 
         <div
-          className="transition-[padding] duration-300 ease-out"
-          style={{ paddingLeft: undefined }}
+          className="lg:pl-[var(--shell-pad)] lg:transition-[padding-left] lg:duration-300 lg:ease-out"
+          style={{ "--shell-pad": collapsed ? "4.5rem" : "16rem" } as React.CSSProperties}
         >
-          <div
-            className="lg:transition-[padding-left] lg:duration-300 lg:ease-out"
-            style={
-              {
-                "--shell-pad": collapsed ? "4.5rem" : "16rem",
-              } as React.CSSProperties
-            }
-          >
-            <div className="lg:pl-[var(--shell-pad)]">
+          <div>
+
               <header className="sticky top-0 z-30 border-b border-border/60 bg-background/85 backdrop-blur-xl">
                 <div className="flex items-center gap-3 px-4 py-3 sm:px-6">
                   <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
