@@ -170,9 +170,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <main key={pathname} className="reveal px-4 pb-20 pt-8 sm:px-6 lg:px-10">
                 {children}
               </main>
-            </div>
           </div>
         </div>
+
 
         <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       </div>
