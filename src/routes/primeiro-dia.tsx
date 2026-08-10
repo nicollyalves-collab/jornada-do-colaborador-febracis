@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, PartyPopper, Rocket, RotateCcw } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
-import { useJourney, useJourneyVisit } from "@/lib/journey";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/primeiro-dia")({
@@ -37,8 +37,11 @@ const ITEMS = [
 ];
 
 function PrimeiroDiaPage() {
-  useJourneyVisit("primeiro-dia");
-  const { checklist, toggleChecklist, hydrated, reset } = useJourney();
+  const [checklist, setChecklist] = useState<string[]>([]);
+  const hydrated = true;
+  const toggleChecklist = (id: string) =>
+    setChecklist((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
+  const reset = () => setChecklist([]);
 
   const done = ITEMS.filter((i) => checklist.includes(i.id)).length;
   const percent = Math.round((done / ITEMS.length) * 100);
@@ -49,7 +52,7 @@ function PrimeiroDiaPage() {
       <PageHeader
         eyebrow="Onboarding"
         title="Primeiro Dia"
-        subtitle="Marque cada item conforme avançar. Seu progresso fica salvo neste navegador."
+        subtitle="Marque cada item conforme avançar durante o seu primeiro dia."
         action={
           <Button
             variant="outline"

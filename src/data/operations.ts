@@ -35,10 +35,10 @@ export const ROUTINES: Routine[] = [
   {
     id: "pulso",
     name: "Reunião de Pulso",
-    objective: "Checagem rápida de andamento de demandas, bloqueios e prioridades do dia.",
+    objective: "Checagem de andamento de demandas, bloqueios e prioridades da semana.",
     participants: "Time Pedagógico",
-    frequency: "Diária",
-    time: "Início do expediente",
+    frequency: "Semanal",
+    time: "A confirmar com a liderança",
   },
 ];
 

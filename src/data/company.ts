@@ -1,12 +1,4 @@
-import {
-  Flag,
-  Globe2,
-  BookOpen,
-  Users2,
-  Award,
-  Sparkles,
-  type LucideIcon,
-} from "lucide-react";
+import { Flag, Globe2, Users2, Award, type LucideIcon } from "lucide-react";
 
 export type TimelineEntry = {
   year: string;
@@ -80,35 +72,6 @@ export const FACTS: FactCard[] = [
   { icon: Globe2, label: "Presença", value: "3 continentes" },
   { icon: Flag, label: "Unidades", value: "+30 franquias" },
   { icon: Award, label: "Certificação", value: "Florida Christian University" },
-];
-
-export type TrainingCard = {
-  icon: LucideIcon;
-  name: string;
-  text: string;
-};
-
-export const TRAININGS: TrainingCard[] = [
-  {
-    icon: Sparkles,
-    name: "Método CIS",
-    text: "Imersão baseada na autorresponsabilidade, com foco em ação, foco e inteligência emocional.",
-  },
-  {
-    icon: BookOpen,
-    name: "Formações e certificações",
-    text: "Trilhas de formação profissional com certificação emitida pela FCU.",
-  },
-  {
-    icon: Users2,
-    name: "Treinamentos corporativos",
-    text: "Programas para empresas e lideranças, aplicando o CIS ao contexto de negócios.",
-  },
-  {
-    icon: Globe2,
-    name: "Eventos e imersões",
-    text: "Encontros presenciais de alto impacto realizados no Brasil e no exterior.",
-  },
 ];
 
 export const CULTURE_STATEMENTS = [

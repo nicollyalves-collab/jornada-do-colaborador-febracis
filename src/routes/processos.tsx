@@ -4,7 +4,6 @@ import { FileText, User, ExternalLink, Search } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useJourneyVisit } from "@/lib/journey";
 import { PROCESSES, PROCESS_CATEGORIES } from "@/data/processes";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -29,7 +28,6 @@ export const Route = createFileRoute("/processos")({
 });
 
 function ProcessosPage() {
-  useJourneyVisit("processos");
   const [filter, setFilter] = useState("Todos");
   const [query, setQuery] = useState("");
 
