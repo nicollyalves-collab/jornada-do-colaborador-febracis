@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink, Lock } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
-import { useJourneyVisit } from "@/lib/journey";
 import { TOOLS, TOOL_CATEGORIES } from "@/data/tools";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
 
 export const Route = createFileRoute("/ferramentas")({
   head: () => ({
@@ -15,7 +13,7 @@ export const Route = createFileRoute("/ferramentas")({
       {
         name: "description",
         content:
-          "CIS Educa, Salesforce, GLPI, Avalon, Drive Pedagógico e demais sistemas usados pelo setor Pedagógico.",
+          "Central de acessos do setor Pedagógico: sistemas, documentos, modelos de contrato e canais de suporte.",
       },
       { property: "og:title", content: "Ferramentas do Setor Pedagógico" },
       {
@@ -28,7 +26,6 @@ export const Route = createFileRoute("/ferramentas")({
 });
 
 function FerramentasPage() {
-  useJourneyVisit("ferramentas");
   const [filter, setFilter] = useState<string>("Todas");
 
   const visible = filter === "Todas" ? TOOLS : TOOLS.filter((t) => t.category === filter);
@@ -36,12 +33,12 @@ function FerramentasPage() {
   return (
     <div className="mx-auto max-w-6xl">
       <PageHeader
-        eyebrow="Sistemas"
+        eyebrow="Central de acessos"
         title="Ferramentas"
-        subtitle="Tudo que você usa no dia a dia do setor Pedagógico, organizado por categoria."
+        subtitle="Sistemas, documentos e canais usados no dia a dia do setor Pedagógico."
       />
 
-      <div className="mb-8 flex flex-wrap gap-2">
+      <div className="mb-7 flex flex-wrap gap-2">
         {["Todas", ...TOOL_CATEGORIES].map((cat) => (
           <button
             key={cat}
@@ -58,47 +55,38 @@ function FerramentasPage() {
         ))}
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {visible.map((tool, i) => (
           <article
             key={tool.id}
-            className="card-lift reveal glass flex flex-col rounded-2xl p-6"
-            style={{ animationDelay: `${i * 60}ms` }}
+            className="card-lift reveal glass flex flex-col rounded-xl p-5"
+            style={{ animationDelay: `${i * 50}ms` }}
           >
-            <div className="flex items-start justify-between">
-              <span className="grid size-11 place-items-center rounded-xl border border-gold/30 bg-gold/10">
-                <tool.icon className="size-5 text-gold" />
+            <div className="flex items-start justify-between gap-3">
+              <span className="grid size-10 place-items-center rounded-xl border border-gold/30 bg-gold/10">
+                <tool.icon className="size-4.5 text-gold" />
               </span>
-              <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+              <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                 {tool.category}
               </span>
             </div>
-            <h3 className="mt-5 font-display text-base font-semibold">{tool.name}</h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-              {tool.description}
-            </p>
-            {tool.url ? (
-              <Button asChild size="sm" className="mt-6 w-fit rounded-lg">
-                <a href={tool.url} target="_blank" rel="noreferrer noopener">
-                  Acessar <ExternalLink className="ml-1 size-3.5" />
-                </a>
-              </Button>
-            ) : (
-              <Button
-                size="sm"
-                variant="outline"
-                className="mt-6 w-fit rounded-lg border-border bg-transparent hover:border-gold/50 hover:bg-secondary/40"
-                onClick={() => toast("Link em breve", { description: `${tool.name} — acesso será cadastrado pela Coordenação.` })}
-              >
-                Acessar <Lock className="ml-1 size-3.5" />
-              </Button>
+            <h3 className="mt-4 font-display text-sm font-semibold leading-snug">{tool.name}</h3>
+            {tool.description && (
+              <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted-foreground">
+                {tool.description}
+              </p>
             )}
+            <Button asChild size="sm" className="mt-5 w-fit rounded-lg text-xs">
+              <a href={tool.url} target="_blank" rel="noreferrer noopener">
+                Acessar <ExternalLink className="ml-1 size-3.5" />
+              </a>
+            </Button>
           </article>
         ))}
       </div>
 
-      <p className="mt-10 text-xs text-muted-foreground">
-        Os links de acesso serão inseridos posteriormente em cada ferramenta.
+      <p className="mt-8 text-xs text-muted-foreground">
+        Alguns acessos são restritos e podem exigir autorização prévia da Coordenação Pedagógica.
       </p>
     </div>
   );
