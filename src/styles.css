@@ -42,6 +42,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-navy: var(--navy);
@@ -77,6 +79,9 @@
   /* #C8A44D */
   --gold: oklch(0.727 0.108 87.5);
   --gold-soft: oklch(0.83 0.076 88);
+  /* Rosa Febracis Premium */
+  --pink: oklch(0.62 0.18 350);
+  --pink-soft: oklch(0.74 0.13 350);
 
   --background: oklch(0.175 0.052 268.5);
   --foreground: oklch(0.97 0.005 260);
@@ -130,6 +135,14 @@
     ),
     linear-gradient(160deg, oklch(0.28 0.075 268) 0%, oklch(0.165 0.05 268.5) 70%);
   --gradient-gold: linear-gradient(100deg, var(--gold-soft), var(--gold) 55%, oklch(0.62 0.1 82));
+  --gradient-pink: linear-gradient(100deg, var(--pink-soft), var(--pink) 55%, oklch(0.52 0.16 350));
+}
+
+@utility text-pink-gradient {
+  background: var(--gradient-pink);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 @layer base {
