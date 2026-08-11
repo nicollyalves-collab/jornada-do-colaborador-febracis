@@ -58,7 +58,7 @@ function Index() {
             <Sparkles className="size-3" /> Setor Pedagógico
           </span>
           <h1 className="mt-6 text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-6xl">
-            Bem-vindo à <span className="text-gold-gradient">Jornada do Colaborador</span>.
+            Bem-vindo à <span className="text-pink-gradient">Jornada do Colaborador</span>.
           </h1>
           <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
             Sua jornada no setor Pedagógico começa aqui.
