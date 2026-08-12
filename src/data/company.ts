@@ -74,51 +74,106 @@ export const FACTS: FactCard[] = [
   { icon: Award, label: "Certificação", value: "Florida Christian University" },
 ];
 
-export const CULTURE_STATEMENTS = [
-  {
-    title: "Missão",
-    text: "Transformar vidas por meio do desenvolvimento humano, levando método, ação e resultado a pessoas e organizações.",
-  },
-  {
-    title: "Visão",
-    text: "Ser reconhecida como a maior e melhor escola de negócios da América Latina, com presença global.",
-  },
-  {
-    title: "Valores",
-    text: "Autorresponsabilidade, excelência, respeito, meritocracia, entrega de resultado e evolução contínua.",
-  },
+export const MISSION =
+  "Transformar pessoas, formar líderes de alta performance, ensinando gestão de classe mundial e tornar negócios exponenciais, construindo um mundo extraordinário e abundante.";
+
+export const VISION =
+  "Ser reconhecida como a maior e melhor escola de negócios e desenvolvimento humano do Brasil, com atuação internacional em 10 países e 4 continentes até 2026.";
+
+export const VALUES: string[] = [
+  "Crescimento é obrigação",
+  "Integridade inquestionável",
+  "Resultado com consciência",
+  "Cultura de dono",
+  "Excelência visível",
+  "Meritocracia justa",
+  "Verdade radical",
+  "Sustentabilidade financeira",
+  "Desenvolvimento contínuo",
+  "Contribuição estratégica",
 ];
 
-/**
- * Galeria de cultura — as artes oficiais (14 Chaves da Excelência,
- * 7 Leis da Autorresponsabilidade, Missão/Visão/Valores) devem ser
- * adicionadas aqui em `image` quando fornecidas pelo usuário.
- */
-export type CultureGalleryItem = {
-  id: string;
+export const LEIS_AUTORRESPONSABILIDADE: string[] = [
+  "Se é para criticar os outros, cale-se;",
+  "Se é pra reclamar, dê sugestão;",
+  "Se é para buscar culpados, busque solução;",
+  "Se é para se fazer de vítima, faça-se de vencedor;",
+  "Se é para justificar seus erros, aprenda com eles;",
+  "Se é para julgar as pessoas, julgue suas atitudes;",
+  "Se for para se irritar, seja paciente e compreenda o todo.",
+];
+
+export const CHAVES_EXCELENCIA: string[] = [
+  "Tudo é problema de todo mundo.",
+  "Amar feedback.",
+  "Informar à Diretoria tudo o que atinge a excelência da empresa.",
+  "Prover soluções.",
+  "Entregamos o Extraordinário.",
+  "Velocidade nos processos e soluções.",
+  "Intensificar a comunicação.",
+  "Nível de expectativa elevado sobre nós e sobre a equipe.",
+  "Praticamos a verdade nua e crua.",
+  "Somos e continuamos sendo os melhores em tudo que fazemos.",
+  "Somos uma empresa de tecnologia.",
+  "Somos íntegros e honestos acima de tudo.",
+  "Prometemos, cumprimos.",
+  "Gestão acima de tudo.",
+];
+
+export type EcosystemLevel = {
   title: string;
-  group: "Institucional" | "14 Chaves da Excelência" | "7 Leis da Autorresponsabilidade";
-  summary: string;
-  image?: string;
+  caption: string;
 };
 
-export const CULTURE_GALLERY: CultureGalleryItem[] = [
+export const ECOSYSTEM_LEVELS: EcosystemLevel[] = [
+  { title: "Holding Febracis", caption: "A empresa-mãe" },
+  { title: "Franquias", caption: "Centros de impacto local" },
+  { title: "Clientes e Participantes", caption: "O impacto final" },
+];
+
+export type EcosystemBlock = {
+  title: string;
+  intro: string;
+  points: { label: string; text: string }[];
+};
+
+export const ECOSYSTEM_BLOCKS: EcosystemBlock[] = [
   {
-    id: "mvv",
-    title: "Missão, Visão e Valores",
-    group: "Institucional",
-    summary: "O direcionamento que orienta cada decisão dentro da Holding Febracis.",
+    title: "A Holding: o cérebro do negócio",
+    intro:
+      "A Holding funciona como a empresa-mãe e concentra a gestão estratégica das diferentes frentes da Febracis.",
+    points: [
+      {
+        label: "Centraliza estratégias",
+        text: "define e direciona áreas importantes para o funcionamento do grupo.",
+      },
+      {
+        label: "Guarda a metodologia",
+        text: "concentra e protege as metodologias e propriedades intelectuais da companhia.",
+      },
+      {
+        label: "Cria novos produtos",
+        text: "participa do desenvolvimento de produtos, plataformas, ferramentas e materiais.",
+      },
+    ],
   },
   {
-    id: "chaves",
-    title: "14 Chaves da Excelência",
-    group: "14 Chaves da Excelência",
-    summary: "Princípios de comportamento e performance que sustentam a cultura de excelência.",
-  },
-  {
-    id: "leis",
-    title: "7 Leis da Autorresponsabilidade",
-    group: "7 Leis da Autorresponsabilidade",
-    summary: "A base do Método CIS: assumir o controle dos próprios resultados.",
+    title: "As Franquias: centros de impacto local",
+    intro:
+      "As franquias são unidades que levam a metodologia, os treinamentos e as experiências da Febracis para diferentes regiões.",
+    points: [
+      {
+        label: "Replicação do modelo",
+        text: "aplicam treinamentos, imersões e outras experiências da marca.",
+      },
+      {
+        label: "Estrutura regional",
+        text: "aproximam a Febracis dos participantes e empresas de cada região.",
+      },
+      {
+        label: "Operação local",
+        text: "realizam e comercializam produtos e treinamentos da Febracis em suas regiões.",
+      },
+    ],
   },
 ];

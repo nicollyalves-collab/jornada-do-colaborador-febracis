@@ -1,3 +1,9 @@
+import kauaneAvatar from "@/assets/avatars/kauane.png";
+import nayanaAvatar from "@/assets/avatars/nayana.png";
+import luanaAvatar from "@/assets/avatars/luana.png";
+import barbaraAvatar from "@/assets/avatars/barbara.png";
+import nicolyAvatar from "@/assets/avatars/nicoly.png";
+
 export type TeamGroup = {
   title: string;
   items: string[];
@@ -9,6 +15,7 @@ export type TeamMember = {
   role: string;
   initials: string;
   photo?: string;
+  avatar?: string;
   fronts: string[];
   groups: TeamGroup[];
 };
@@ -16,6 +23,7 @@ export type TeamMember = {
 export const TEAM: TeamMember[] = [
   {
     id: "kauane-ribeiro",
+    avatar: kauaneAvatar,
     name: "Kauane Ribeiro",
     role: "Assistente Pedagógica",
     initials: "KR",
@@ -75,6 +83,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "nayana-lima",
+    avatar: nayanaAvatar,
     name: "Nayana Lima",
     role: "Assistente Pedagógica",
     initials: "NL",
@@ -121,6 +130,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "luana-santana",
+    avatar: luanaAvatar,
     name: "Luana Santana",
     role: "Assistente Pedagógica Pleno",
     initials: "LS",
@@ -156,6 +166,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "barbara-barbosa",
+    avatar: barbaraAvatar,
     name: "Bárbara Barbosa",
     role: "Assistente Pedagógica",
     initials: "BB",
@@ -214,6 +225,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     id: "nicoly-alves",
+    avatar: nicolyAvatar,
     name: "Nicoly Alves",
     role: "Assistente Pedagógica",
     initials: "NA",
