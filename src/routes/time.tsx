@@ -1,16 +1,7 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { TEAM, type TeamMember } from "@/data/team";
+import { TEAM } from "@/data/team";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/time")({
   head: () => ({
@@ -26,14 +17,14 @@ export const Route = createFileRoute("/time")({
         property: "og:description",
         content: "Quem é quem no Pedagógico e as frentes de atuação de cada integrante.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: TimePage,
 });
 
 function TimePage() {
-  const [selected, setSelected] = useState<TeamMember | null>(null);
-
   return (
     <div className="mx-auto max-w-6xl">
       <PageHeader
@@ -42,87 +33,91 @@ function TimePage() {
         subtitle="O Time Pedagógico da Holding Febracis e as frentes que cada integrante conduz."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {TEAM.map((member, i) => (
-          <article
-            key={member.id}
-            className="card-lift reveal glass flex flex-col rounded-2xl p-5"
-            style={{ animationDelay: `${i * 70}ms` }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-full border border-gold/30 bg-gold/10 font-display text-sm font-semibold text-gold">
-                {member.photo ? (
-                  <img
-                    src={member.photo}
-                    alt={`Foto de ${member.name}`}
-                    loading="lazy"
-                    className="size-full object-cover"
-                  />
-                ) : (
-                  member.initials
-                )}
-              </span>
-              <div className="min-w-0">
-                <h3 className="truncate font-display text-sm font-semibold">{member.name}</h3>
-                <p className="truncate text-[11px] uppercase tracking-[0.14em] text-gold">
-                  {member.role}
-                </p>
-              </div>
-            </div>
-
-            <ul className="mt-4 flex flex-1 flex-wrap gap-1.5">
-              {member.fronts.map((f) => (
-                <li
-                  key={f}
-                  className="rounded-full border border-border bg-secondary/40 px-2.5 py-1 text-[11px] text-muted-foreground"
-                >
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => setSelected(member)}
-              className="mt-5 w-fit rounded-lg border-border bg-transparent text-xs hover:border-gold/50 hover:bg-secondary/40"
+      <div className="space-y-16 pb-8 lg:space-y-24">
+        {TEAM.map((member, i) => {
+          const flipped = i % 2 === 1;
+          return (
+            <section
+              key={member.id}
+              className="reveal grid items-start gap-10 lg:grid-cols-[300px_1fr] lg:gap-14"
             >
-              Ver atribuições <ArrowUpRight className="ml-1 size-3.5" />
-            </Button>
-          </article>
-        ))}
-      </div>
+              {/* Identidade */}
+              <div className={cn("lg:sticky lg:top-8", flipped && "lg:order-2")}>
+                <div className="glass rounded-3xl p-7 text-center">
+                  <div className="relative mx-auto w-fit">
+                    <span className="grid size-32 place-items-center overflow-hidden rounded-full border border-gold/30 bg-gold/10 font-display text-2xl font-semibold text-gold sm:size-36">
+                      {member.photo ? (
+                        <img
+                          src={member.photo}
+                          alt={`Foto de ${member.name}`}
+                          loading="lazy"
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        member.initials
+                      )}
+                    </span>
+                    {member.avatar && (
+                      <img
+                        src={member.avatar}
+                        alt={`Avatar ilustrado de ${member.name}`}
+                        loading="lazy"
+                        width={512}
+                        height={512}
+                        className="absolute -bottom-2 -right-3 size-14 rounded-full border border-gold/30 bg-background object-cover sm:size-16"
+                      />
+                    )}
+                  </div>
 
-      <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto">
-          {selected && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="font-display text-lg">{selected.name}</DialogTitle>
-                <DialogDescription className="text-[11px] uppercase tracking-[0.16em] text-gold">
-                  {selected.role}
-                </DialogDescription>
-              </DialogHeader>
-              <div className="gold-rule" />
-              <div className="mt-2 space-y-5">
-                {selected.groups.map((group) => (
-                  <section key={group.title}>
-                    <h4 className="font-display text-sm font-semibold">{group.title}</h4>
-                    <ul className="mt-2 space-y-1.5">
-                      {group.items.map((item) => (
-                        <li key={item} className="flex gap-2.5 text-sm text-muted-foreground">
-                          <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </section>
-                ))}
+                  <h2 className="mt-7 font-display text-xl font-semibold sm:text-2xl">
+                    {member.name}
+                  </h2>
+                  <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                    {member.role}
+                  </p>
+                  <div className="gold-rule mx-auto mt-5 max-w-24" />
+                  <ul className="mt-5 flex flex-wrap justify-center gap-1.5">
+                    {member.fronts.map((f) => (
+                      <li
+                        key={f}
+                        className="rounded-full border border-border bg-secondary/40 px-2.5 py-1 text-[11px] text-muted-foreground"
+                      >
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+
+              {/* Atribuições */}
+              <div className={cn(flipped && "lg:order-1")}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Atribuições
+                </p>
+                <div className="mt-6 grid gap-x-12 gap-y-8 md:grid-cols-2">
+                  {member.groups.map((group) => (
+                    <section key={group.title}>
+                      <h3 className="font-display text-base font-semibold">{group.title}</h3>
+                      <div className="gold-rule mt-3 max-w-16" />
+                      <ul className="mt-4 space-y-2.5">
+                        {group.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
+                          >
+                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }
