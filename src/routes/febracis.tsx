@@ -106,46 +106,83 @@ function FebracisPage() {
         </div>
       </div>
 
-      <div className="mt-14">
-        <SectionTitle>Principais Treinamentos e Formações</SectionTitle>
-        <p className="-mt-3 mb-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          {TRAININGS_INTRO}
-        </p>
+      {/* Ecossistema */}
+      <section className="mt-20">
+        <SectionTitle hint="Da estratégia ao impacto final">Entenda o Ecossistema Febracis</SectionTitle>
 
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {TRAININGS.map((t) => {
-            const expanded = open === t.id;
-            return (
-              <article
-                key={t.id}
-                className="rounded-xl border border-border/70 bg-card/50 p-4 transition-colors duration-300 hover:border-gold/40"
-              >
-                <button
-                  onClick={() => setOpen(expanded ? null : t.id)}
-                  aria-expanded={expanded}
-                  className="flex w-full items-start justify-between gap-3 text-left"
-                >
-                  <h3 className="font-display text-sm font-semibold leading-snug">{t.name}</h3>
-                  <ChevronDown
-                    className={cn(
-                      "mt-0.5 size-4 shrink-0 text-gold transition-transform duration-300",
-                      expanded && "rotate-180",
-                    )}
-                  />
-                </button>
-                <p
-                  className={cn(
-                    "mt-2 text-xs leading-relaxed text-muted-foreground",
-                    !expanded && "line-clamp-2",
+        <div className="glass rounded-3xl p-7 sm:p-10">
+          <div className="flex flex-col items-stretch gap-4 lg:flex-row lg:items-center">
+            {ECOSYSTEM_LEVELS.map((level, i) => {
+              const Icon = LEVEL_ICONS[i] ?? Building2;
+              return (
+                <div key={level.title} className="flex flex-1 items-center gap-4">
+                  <div className="flex-1 rounded-2xl border border-gold/25 bg-card/50 p-5 text-center">
+                    <Icon className="mx-auto size-5 text-gold" />
+                    <p className="mt-3 font-display text-base font-semibold">{level.title}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{level.caption}</p>
+                  </div>
+                  {i < ECOSYSTEM_LEVELS.length - 1 && (
+                    <ArrowRight className="mx-auto size-5 shrink-0 rotate-90 text-gold/60 lg:rotate-0" />
                   )}
-                >
-                  {t.text}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          {ECOSYSTEM_BLOCKS.map((block, i) => {
+            const Icon = BLOCK_ICONS[i] ?? Brain;
+            return (
+              <article key={block.title}>
+                <Icon className="size-5 text-gold" />
+                <h3 className="mt-4 font-display text-lg font-semibold sm:text-xl">{block.title}</h3>
+                <div className="gold-rule mt-3 max-w-16" />
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  {block.intro}
                 </p>
+                <ul className="mt-5 space-y-3">
+                  {block.points.map((p) => (
+                    <li key={p.label} className="flex gap-3 text-sm leading-relaxed">
+                      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+                      <span className="text-muted-foreground">
+                        <span className="font-semibold text-foreground">{p.label}:</span> {p.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             );
           })}
         </div>
+      </section>
+
+      <div className="mt-20">
+        <SectionTitle>Principais Treinamentos e Formações</SectionTitle>
+        <p className="-mt-3 mb-7 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          {TRAININGS_INTRO}
+        </p>
+
+        <div className="grid gap-x-10 gap-y-2 md:grid-cols-2 xl:grid-cols-3">
+          {TRAININGS.map((t, i) => (
+            <article
+              key={t.id}
+              className="flex gap-4 border-b border-border/50 py-5 transition-colors duration-300 hover:border-gold/40"
+            >
+              <span className="font-display text-sm font-semibold tabular-nums text-gold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-sm font-semibold uppercase tracking-[0.06em]">
+                  {t.name}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{t.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
+
 
       <p className="mt-10 text-xs leading-relaxed text-muted-foreground">
         Informações compiladas de fontes públicas oficiais da Febracis. Dados internos e números
