@@ -1,10 +1,14 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Quote, ChevronDown } from "lucide-react";
+import { Quote, Building2, Store, Users, ArrowRight, Brain, MapPin } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/page-header";
-import { TIMELINE, FOUNDERS, FACTS } from "@/data/company";
+import {
+  TIMELINE,
+  FOUNDERS,
+  FACTS,
+  ECOSYSTEM_LEVELS,
+  ECOSYSTEM_BLOCKS,
+} from "@/data/company";
 import { TRAININGS, TRAININGS_INTRO } from "@/data/trainings";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/febracis")({
   head: () => ({
@@ -20,13 +24,18 @@ export const Route = createFileRoute("/febracis")({
         property: "og:description",
         content: "História, fundadores, Método CIS e presença internacional da Holding Febracis.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: FebracisPage,
 });
 
+const LEVEL_ICONS = [Building2, Store, Users];
+const BLOCK_ICONS = [Brain, MapPin];
+
 function FebracisPage() {
-  const [open, setOpen] = useState<string | null>(null);
+
 
   return (
     <div className="mx-auto max-w-6xl">
