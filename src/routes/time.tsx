@@ -44,28 +44,21 @@ function TimePage() {
                 <div className="glass rounded-3xl p-7 text-center">
                   <div className="relative mx-auto w-fit">
                     <span className="grid size-32 place-items-center overflow-hidden rounded-full border border-gold/30 bg-gold/10 font-display text-2xl font-semibold text-gold sm:size-36">
-                      {member.photo ? (
+                      {member.avatar || member.photo ? (
                         <img
-                          src={member.photo}
+                          src={member.avatar ?? member.photo}
                           alt={`Foto de ${member.name}`}
                           loading="lazy"
-                          className="size-full object-cover"
+                          width={512}
+                          height={512}
+                          className="size-full scale-105 object-cover object-top"
                         />
                       ) : (
                         member.initials
                       )}
                     </span>
-                    {member.avatar && (
-                      <img
-                        src={member.avatar}
-                        alt={`Avatar ilustrado de ${member.name}`}
-                        loading="lazy"
-                        width={512}
-                        height={512}
-                        className="absolute -bottom-2 -right-3 size-14 rounded-full border border-gold/30 bg-background object-cover sm:size-16"
-                      />
-                    )}
                   </div>
+
 
                   <h2 className="mt-7 font-display text-xl font-semibold sm:text-2xl">
                     {member.name}
