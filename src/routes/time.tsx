@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/page-header";
 import { TEAM } from "@/data/team";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/time")({
   head: () => ({
@@ -34,15 +33,14 @@ function TimePage() {
       />
 
       <div className="space-y-16 pb-8 lg:space-y-24">
-        {TEAM.map((member, i) => {
-          const flipped = i % 2 === 1;
+        {TEAM.map((member) => {
           return (
             <section
               key={member.id}
               className="reveal grid items-start gap-10 lg:grid-cols-[300px_1fr] lg:gap-14"
             >
               {/* Identidade */}
-              <div className={cn("lg:sticky lg:top-8", flipped && "lg:order-2")}>
+              <div className={"lg:sticky lg:top-8"}>
                 <div className="glass rounded-3xl p-7 text-center">
                   <div className="relative mx-auto w-fit">
                     <span className="grid size-32 place-items-center overflow-hidden rounded-full border border-gold/30 bg-gold/10 font-display text-2xl font-semibold text-gold sm:size-36">
@@ -90,7 +88,7 @@ function TimePage() {
               </div>
 
               {/* Atribuições */}
-              <div className={cn(flipped && "lg:order-1")}>
+              <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                   Atribuições
                 </p>
