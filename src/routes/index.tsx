@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Comece sua jornada no setor Pedagógico da Holding Febracis: conheça a empresa, a cultura, o time, os processos e as ferramentas.",
+          "Comece sua jornada no setor Pedagógico da Holding Febracis: conheça a empresa, a cultura, o time, as rotinas e as ferramentas.",
       },
       { property: "og:title", content: "Jornada do Colaborador — Holding Febracis" },
       {
@@ -35,10 +35,10 @@ const CARDS = [
     text: "Quem é quem no Pedagógico e suas frentes.",
   },
   {
-    to: "/processos",
+    to: "/rotinas",
     icon: BookOpen,
-    title: "Aprenda os processos",
-    text: "POPs e procedimentos do setor.",
+    title: "Conheça as rotinas",
+    text: "EGD, Pátria, Cumbuca e Reunião de Pulso.",
   },
   {
     to: "/ferramentas",

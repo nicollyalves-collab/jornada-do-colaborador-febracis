@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ExternalLink } from "lucide-react";
 import { PageHeader } from "@/components/page-header";
+import type { TeamItem } from "@/data/team";
 import { TEAM } from "@/data/team";
 
 export const Route = createFileRoute("/time")({
@@ -22,6 +24,29 @@ export const Route = createFileRoute("/time")({
   }),
   component: TimePage,
 });
+
+function AttributionItem({ item }: { item: TeamItem }) {
+  const text = typeof item === "string" ? item : item.text;
+  return (
+    <li className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+      <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
+      <span>
+        {text}
+        {typeof item !== "string" && (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="ml-2 inline-flex items-center gap-1 text-xs font-medium text-gold underline decoration-gold/40 underline-offset-4 transition-colors hover:decoration-gold"
+          >
+            {item.linkLabel}
+            <ExternalLink className="size-3" />
+          </a>
+        )}
+      </span>
+    </li>
+  );
+}
 
 function MemberCard({ member }: { member: (typeof TEAM)[number] }) {
   return (
@@ -83,14 +108,8 @@ function MemberSection({ member }: { member: (typeof TEAM)[number] }) {
               <h3 className="font-display text-base font-semibold">{group.title}</h3>
               <div className="gold-rule mt-3 max-w-16" />
               <ul className="mt-4 space-y-2.5">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
-                  >
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
-                    {item}
-                  </li>
+                {group.items.map((item, idx) => (
+                  <AttributionItem key={idx} item={item} />
                 ))}
               </ul>
             </section>
@@ -167,14 +186,8 @@ function TimePage() {
                       <h3 className="font-display text-sm font-semibold">{group.title}</h3>
                       <div className="gold-rule mt-2 max-w-12" />
                       <ul className="mt-3 space-y-2">
-                        {group.items.map((item) => (
-                          <li
-                            key={item}
-                            className="flex gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                          >
-                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" />
-                            {item}
-                          </li>
+                        {group.items.map((item, idx) => (
+                          <AttributionItem key={idx} item={item} />
                         ))}
                       </ul>
                     </section>

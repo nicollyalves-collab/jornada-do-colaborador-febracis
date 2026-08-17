@@ -58,6 +58,13 @@ export const TOOLS: Tool[] = [
     url: "https://tickets.febra.site/index.php?redirect=%2Ffront%2Fhelpdesk.public.php&error=3",
   },
   {
+    id: "avalon",
+    name: "Avalon",
+    icon: MessageCircle,
+    category: "Sistemas",
+    url: "https://intelligence.wts.chat/chat2/sessions/4f2bd075-bd53-4b14-af70-a899bedb64da",
+  },
+  {
     id: "manual",
     name: "Manual do Pedagógico",
     description: "Guia de referência do setor.",
@@ -90,12 +97,11 @@ export const TOOLS: Tool[] = [
     url: "https://docs.google.com/spreadsheets/d/1ODO7c_uNTjWA0WJoBD6fDlWxPf-pwARPhV3947B1_7Y/edit?usp=sharing",
   },
   {
-    id: "controle-interno",
-    name: "Controle Interno — Horas extras, folgas e férias",
-    description: "Time Gabriela Alencar.",
+    id: "notion",
+    name: "Notion",
     icon: ShieldCheck,
     category: "Documentos e Gestão",
-    url: "https://docs.google.com/document/d/1onCQ2zzTJRfZc-tf5WceOq3war0oxquTtW8dFEj4dQ8/edit?tab=t.jbdboxid8tqm",
+    url: "https://app.notion.com/p/Central-de-Dados-335314dfee7b8075b93ce0d774e4a4f6",
   },
   {
     id: "atribuicoes",

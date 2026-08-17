@@ -6,9 +6,11 @@ import nicolyAvatar from "@/assets/avatars/nicoly.png";
 import alineMayraAvatar from "@/assets/avatars/aline-mayra.png";
 import gabrielaAlencarAvatar from "@/assets/avatars/gabriela-alencar.png";
 
+export type TeamItem = string | { text: string; href: string; linkLabel: string };
+
 export type TeamGroup = {
   title: string;
-  items: string[];
+  items: TeamItem[];
 };
 
 export type TeamMember = {
@@ -27,95 +29,19 @@ export const TEAM: TeamMember[] = [
     id: "gabriela-alencar",
     avatar: gabrielaAlencarAvatar,
     name: "Gabriela Alencar",
-    role: "Gestora Pedagógica",
+    role: "Gestora",
     initials: "GA",
-    fronts: [
-      "Liderança Estratégica",
-      "Gestão de Pessoas",
-      "Processos Pedagógicos",
-      "Relacionamento com Franquias",
-    ],
-    groups: [
-      {
-        title: "Liderança Estratégica",
-        items: [
-          "Definição de diretrizes e prioridades do setor Pedagógico",
-          "Alinhamento com a diretoria e demais áreas da Holding",
-          "Planejamento de entregas e indicadores de resultado",
-        ],
-      },
-      {
-        title: "Gestão de Pessoas",
-        items: [
-          "Acompanhamento e desenvolvimento do time pedagógico",
-          "Feedback individual e planos de evolução",
-          "Distribuição de responsabilidades e frentes de atuação",
-        ],
-      },
-      {
-        title: "Processos Pedagógicos",
-        items: [
-          "Supervisão dos processos operacionais e acadêmicos",
-          "Padronização e melhoria contínua de fluxos",
-          "Garantia de qualidade das entregas pedagógicas",
-        ],
-      },
-      {
-        title: "Relacionamento com Franquias",
-        items: [
-          "Representação do setor junto às franquias",
-          "Resolução de demandas estratégicas dos franqueados",
-          "Fortalecimento da relação Holding–Franquias",
-        ],
-      },
-    ],
+    fronts: [],
+    groups: [],
   },
   {
     id: "aline-mayra",
     avatar: alineMayraAvatar,
     name: "Aline Mayra",
-    role: "Supervisora Pedagógica",
+    role: "Supervisora",
     initials: "AM",
-    fronts: [
-      "Supervisão Operacional",
-      "Qualidade e Padronização",
-      "Suporte às Franquias",
-      "Integração de Processos",
-    ],
-    groups: [
-      {
-        title: "Supervisão Operacional",
-        items: [
-          "Acompanhamento do dia a dia do time pedagógico",
-          "Garantia de cumprimento de prazos e processos",
-          "Escalonamento de demandas complexas",
-        ],
-      },
-      {
-        title: "Qualidade e Padronização",
-        items: [
-          "Revisão e padronização de processos e materiais",
-          "Controle de qualidade dos atendimentos e entregas",
-          "Criação e atualização de documentação pedagógica",
-        ],
-      },
-      {
-        title: "Suporte às Franquias",
-        items: [
-          "Atendimento e orientação às equipes pedagógicas das franquias",
-          "Solução de dúvidas e conflitos operacionais",
-          "Acompanhamento de indicadores de atendimento",
-        ],
-      },
-      {
-        title: "Integração de Processos",
-        items: [
-          "Articulação entre as frentes do setor Pedagógico",
-          "Alinhamento de fluxos entre Holding e franquias",
-          "Contribuição para melhorias nos sistemas e rotinas",
-        ],
-      },
-    ],
+    fronts: [],
+    groups: [],
   },
   {
     id: "kauane-ribeiro",
@@ -342,7 +268,14 @@ export const TEAM: TeamMember[] = [
       },
       {
         title: "Processo Pedagógico",
-        items: ["Gestão de calendário global (planilha e site)"],
+        items: [
+          "Gestão de calendário global (planilha e site)",
+          {
+            text: "Atualização do Calendário Global",
+            href: "https://docs.google.com/document/d/1GxhJLjyl6xpSz8AJESk11AFnOA1KTNTCaH0ILx5yuS8/edit?usp=sharing",
+            linkLabel: "Ver processo completo",
+          },
+        ],
       },
       {
         title: "SME — Subject Matter Expert",
