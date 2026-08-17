@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/command";
 import { NAV_ITEMS } from "@/config/navigation";
 import { TOOLS } from "@/data/tools";
-import { PROCESSES } from "@/data/processes";
-import { RESOURCES } from "@/data/operations";
 import { TEAM } from "@/data/team";
 
 export function GlobalSearch({
@@ -29,7 +27,7 @@ export function GlobalSearch({
 
   return (
     <CommandDialog open={open} onOpenChange={onOpenChange}>
-      <CommandInput placeholder="Buscar páginas, ferramentas, processos, pessoas..." />
+      <CommandInput placeholder="Buscar páginas, ferramentas, pessoas..." />
       <CommandList>
         <CommandEmpty>Nenhum resultado encontrado.</CommandEmpty>
 
@@ -54,15 +52,6 @@ export function GlobalSearch({
           ))}
         </CommandGroup>
 
-        <CommandGroup heading="Processos">
-          {PROCESSES.map((p) => (
-            <CommandItem key={p.id} value={`processo ${p.name}`} onSelect={() => go("/processos")}>
-              <span>{p.name}</span>
-              <span className="ml-auto text-xs text-muted-foreground">{p.owner}</span>
-            </CommandItem>
-          ))}
-        </CommandGroup>
-
         <CommandGroup heading="Time">
           {TEAM.map((m) => (
             <CommandItem key={m.id} value={`time ${m.name} ${m.role}`} onSelect={() => go("/time")}>
@@ -72,14 +61,6 @@ export function GlobalSearch({
           ))}
         </CommandGroup>
 
-        <CommandGroup heading="Central de Recursos">
-          {RESOURCES.map((r) => (
-            <CommandItem key={r.id} value={`recurso ${r.name} ${r.category}`} onSelect={() => go("/recursos")}>
-              <span>{r.name}</span>
-              <span className="ml-auto text-xs text-muted-foreground">{r.category}</span>
-            </CommandItem>
-          ))}
-        </CommandGroup>
       </CommandList>
     </CommandDialog>
   );

@@ -5,10 +5,8 @@ import {
   Users,
   CalendarDays,
   Wrench,
-  BookOpen,
   PhoneCall,
   Rocket,
-  Link2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -46,7 +44,6 @@ export const NAV_ITEMS: NavItem[] = [
     icon: Wrench,
     description: "Central de acessos do setor",
   },
-  { title: "Processos", to: "/processos", icon: BookOpen, description: "POPs e procedimentos" },
   {
     title: "Atendimento às Franquias",
     to: "/atendimento",
@@ -58,12 +55,6 @@ export const NAV_ITEMS: NavItem[] = [
     to: "/primeiro-dia",
     icon: Rocket,
     description: "Checklist de onboarding",
-  },
-  {
-    title: "Central de Recursos",
-    to: "/recursos",
-    icon: Link2,
-    description: "Biblioteca de documentos e links",
   },
 ];
 
