@@ -154,7 +154,7 @@ export const TEAM: TeamMember[] = [
     id: "luana-santana",
     avatar: luanaAvatar,
     name: "Luana Santana",
-    role: "Assistente Pedagógica Pleno",
+    role: "Assistente Pedagógica",
     initials: "LS",
     fronts: [
       "Transferências de Cursos Holding",
