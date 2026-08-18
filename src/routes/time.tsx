@@ -176,24 +176,26 @@ function TimePage() {
                 </div>
               </div>
 
-              <div className="mt-8 border-t border-border/50 pt-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                  Atribuições
-                </p>
-                <div className="mt-5 grid gap-x-10 gap-y-6 sm:grid-cols-2">
-                  {member.groups.map((group) => (
-                    <section key={group.title}>
-                      <h3 className="font-display text-sm font-semibold">{group.title}</h3>
-                      <div className="gold-rule mt-2 max-w-12" />
-                      <ul className="mt-3 space-y-2">
-                        {group.items.map((item, idx) => (
-                          <AttributionItem key={idx} item={item} />
-                        ))}
-                      </ul>
-                    </section>
-                  ))}
+              {member.groups.length > 0 && (
+                <div className="mt-8 border-t border-border/50 pt-8">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                    Atribuições
+                  </p>
+                  <div className="mt-5 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+                    {member.groups.map((group) => (
+                      <section key={group.title}>
+                        <h3 className="font-display text-sm font-semibold">{group.title}</h3>
+                        <div className="gold-rule mt-2 max-w-12" />
+                        <ul className="mt-3 space-y-2">
+                          {group.items.map((item, idx) => (
+                            <AttributionItem key={idx} item={item} />
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
