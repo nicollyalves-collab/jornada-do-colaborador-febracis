@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Headphones, CheckCircle2, Info, MessageSquare } from "lucide-react";
+import { Clock, Headphones, CheckCircle2, Info, MessageSquare, GraduationCap, ExternalLink } from "lucide-react";
 import { PageHeader, SectionTitle } from "@/components/page-header";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/atendimento")({
   head: () => ({
@@ -96,6 +97,27 @@ function AtendimentoPage() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-14">
+        <SectionTitle>Treinamento de Atendimento às Franquias</SectionTitle>
+        <div className="card-lift glass reveal rounded-2xl p-7">
+          <span className="grid size-11 place-items-center rounded-xl border border-gold/40 bg-gold/15">
+            <GraduationCap className="size-5 text-gold" />
+          </span>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Material de apoio para o padrão de comunicação no atendimento às franquias.
+          </p>
+          <Button asChild size="sm" className="mt-6 w-fit rounded-lg">
+            <a
+              href="https://gamma.app/docs/Padrao-de-Comunicacao-no-Atendimento-as-Franquias-mwrc4hozjfwg43k?mode=doc"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Acessar treinamento <ExternalLink className="ml-1 size-3.5" />
+            </a>
+          </Button>
+        </div>
       </div>
 
       <div className="mt-12 flex items-start gap-4 rounded-2xl border border-gold/30 bg-gold/[0.08] p-7 shadow-glow">
