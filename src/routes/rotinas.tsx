@@ -53,7 +53,11 @@ function RotinasPage() {
                   <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                     Objetivo
                   </dt>
-                  <dd className="mt-1 leading-relaxed text-foreground/90">{routine.objective}</dd>
+                  <dd className="mt-1 space-y-1.5 leading-relaxed text-foreground/90">
+                    {routine.objective.map((o) => (
+                      <p key={o}>{o}</p>
+                    ))}
+                  </dd>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -72,7 +76,7 @@ function RotinasPage() {
                     <dt className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
                       Periodicidade
                     </dt>
-                    <dd className="mt-1 text-foreground/90">{routine.frequency}</dd>
+                    <dd className="mt-1 text-foreground/90">{routine.periodicity}</dd>
                   </div>
                 </div>
                 <div className="flex gap-3">
