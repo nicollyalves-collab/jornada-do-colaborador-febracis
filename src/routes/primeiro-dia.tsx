@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ArrowRight,
   Building2,
@@ -14,18 +15,22 @@ import { PageHeader } from "@/components/page-header";
 export const Route = createFileRoute("/primeiro-dia")({
   head: () => ({
     meta: [
-      { title: "Primeiro Dia | Jornada do Colaborador" },
-      {
-        name: "description",
-        content:
-          "Orientação simples do primeiro dia no setor Pedagógico da Holding Febracis: o que conhecer primeiro e em qual ordem.",
-      },
-      { property: "og:title", content: "Primeiro Dia — Onboarding Pedagógico" },
-      {
-        property: "og:description",
-        content: "O caminho recomendado para começar bem no Time Pedagógico.",
-      },
-    ],
+  { title: "Conclusão da Jornada | Jornada do Colaborador" },
+  {
+    name: "description",
+    content:
+      "Avaliação final da Jornada do Colaborador, reunindo os principais conteúdos estudados ao longo do onboarding.",
+  },
+  {
+    property: "og:title",
+    content: "Conclusão da Jornada — Avaliação Final",
+  },
+  {
+    property: "og:description",
+    content:
+      "Teste seus conhecimentos e conclua sua Jornada do Colaborador com aproveitamento mínimo de 80%.",
+  },
+],
   }),
   component: PrimeiroDiaPage,
 });
@@ -69,54 +74,261 @@ const STEPS = [
   },
 ] as const;
 
+
+const QUESTIONS = [
+  {
+    question: "Em que ano o Instituto Paulo Vieira passou a se chamar Febracis?",
+    options: ["1998", "2005", "2009", "2015"],
+    answer: 2,
+  },
+  {
+    question: "Qual alternativa representa corretamente o papel da Holding Febracis dentro do ecossistema?",
+    options: [
+      "Realizar exclusivamente o atendimento das franquias.",
+      "Concentrar a gestão estratégica, proteger as metodologias e participar da criação de novos produtos.",
+      "Atuar somente na comercialização dos treinamentos.",
+      "Substituir as franquias no atendimento aos participantes.",
+    ],
+    answer: 1,
+  },
+  {
+    question: "Qual é a missão apresentada na cultura Febracis?",
+    options: [
+      "Ser a maior empresa de tecnologia educacional da América Latina.",
+      "Expandir franquias para todos os continentes.",
+      "Transformar pessoas, formar líderes de alta performance, ensinar gestão de classe mundial e tornar negócios exponenciais, construindo um mundo extraordinário e abundante.",
+      "Formar exclusivamente empresários e gestores.",
+    ],
+    answer: 2,
+  },
+  {
+    question: "De acordo com as 7 Leis da Autorresponsabilidade, se é para buscar culpados, o que devemos fazer?",
+    options: [
+      "Identificar quem provocou o problema.",
+      "Comunicar imediatamente à Diretoria.",
+      "Buscar solução.",
+      "Aguardar orientação do gestor.",
+    ],
+    answer: 2,
+  },
+  {
+    question: "Qual destas opções faz parte das 14 Chaves da Excelência?",
+    options: [
+      "Evitar feedback para reduzir conflitos.",
+      "Prometemos, cumprimos.",
+      "Problemas devem ser tratados somente pelos gestores.",
+      "Resultados são mais importantes que integridade.",
+    ],
+    answer: 1,
+  },
+  {
+    question: "A EGD — Educação Global Diária — acontece em qual periodicidade e horário?",
+    options: [
+      "Segunda-feira, às 10h.",
+      "Todas as terças, das 10h às 10h30.",
+      "Quarta-feira, das 14h às 15h.",
+      "Sexta-feira, até o final do expediente.",
+    ],
+    answer: 1,
+  },
+  {
+    question: "Qual é o objetivo da Agenda do Notion?",
+    options: [
+      "Registrar as atividades realizadas durante a semana.",
+      "Registrar apenas reuniões com as franquias.",
+      "Registrar a semana seguinte na agenda dentro do Notion.",
+      "Controlar exclusivamente os atendimentos realizados pelo Avalon.",
+    ],
+    answer: 2,
+  },
+  {
+    question: "Qual é o canal oficial para atendimento às franquias e por que ele deve ser utilizado?",
+    options: [
+      "WhatsApp, para tornar o atendimento mais rápido.",
+      "Notion, porque substitui o registro interno.",
+      "E-mail, para centralizar os documentos.",
+      "Avalon, para garantir histórico e rastreabilidade dos atendimentos.",
+    ],
+    answer: 3,
+  },
+  {
+    question: "Qual é a sequência correta do fluxo de atendimento às franquias?",
+    options: [
+      "Recebimento → Resposta → Triagem → Registro → Encaminhamento",
+      "Triagem → Recebimento → Encaminhamento → Registro → Resposta",
+      "Recebimento → Triagem → Encaminhamento → Resposta → Registro",
+      "Recebimento → Encaminhamento → Triagem → Registro → Resposta",
+    ],
+    answer: 2,
+  },
+  {
+    question: "Uma demanda chegou pelo Avalon, mas não pertence ao setor Pedagógico. Qual atitude está mais alinhada às boas práticas?",
+    options: [
+      "Resolver a demanda mesmo assim para evitar transferência.",
+      "Informar ao solicitante que o Pedagógico não poderá ajudar e encerrar.",
+      "Encaminhar ao setor correto, mantendo o histórico e o registro da tratativa.",
+      "Pedir que a pessoa envie novamente a solicitação por outro canal.",
+    ],
+    answer: 2,
+  },
+];
 function PrimeiroDiaPage() {
+const [answers, setAnswers] = useState<(number | null)[]>(
+  Array(QUESTIONS.length).fill(null)
+);
+const [submitted, setSubmitted] = useState(false);
+const score = answers.filter(
+  (answer, index) => answer === QUESTIONS[index]?.answer
+).length;
+
+const passed = score >= 8;
+const selectAnswer = (questionIndex: number, optionIndex: number) => {
+  if (submitted) return;
+
+  setAnswers((current) =>
+    current.map((answer, index) =>
+      index === questionIndex ? optionIndex : answer
+    )
+  );
+};
+const finishQuiz = () => {
+  if (answers.some((answer) => answer === null)) {
+    alert("Responda todas as 10 perguntas antes de finalizar a avaliação.");
+    return;
+  }
+
+  setSubmitted(true);
+};
+const retryQuiz = () => {
+  setAnswers(Array(QUESTIONS.length).fill(null));
+  setSubmitted(false);
+};
+
   return (
     <div className="mx-auto max-w-4xl">
-      <PageHeader
-        eyebrow="Onboarding"
-        title="Primeiro Dia"
-        subtitle="Uma orientação simples sobre o que conhecer primeiro no setor Pedagógico."
-      />
+<PageHeader
+  eyebrow="AVALIAÇÃO FINAL"
+  title="Conclusão da Jornada"
+  subtitle="Chegou a hora de consolidar o que você aprendeu ao longo da sua jornada de integração."
+/>
+<div className="mt-10 space-y-8">
+  <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-6">
+    <p className="font-display text-lg font-semibold text-foreground">
+      Avaliação Final
+    </p>
 
-      <div className="space-y-4">
-        {STEPS.map((step, i) => (
-          <Link
-            key={step.to}
-            to={step.to}
-            className="card-lift reveal group glass flex items-start gap-5 rounded-2xl p-6"
-            style={{ animationDelay: `${i * 70}ms` }}
-          >
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-gold/30 bg-gold/10 transition-colors duration-300 group-hover:bg-gold/20">
-              <step.icon className="size-5 text-gold" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-3">
-                <span className="font-display text-sm font-semibold text-gold/50">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2 className="font-display text-base font-semibold">{step.title}</h2>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
-            </div>
-            <ArrowRight className="mt-3 size-4 shrink-0 text-gold transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        ))}
-      </div>
+    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+      Responda às 10 questões abaixo. Para concluir a Jornada do Colaborador,
+      é necessário atingir pelo menos 80% de aproveitamento.
+    </p>
+  </div>
 
-      <div className="mt-10 flex items-start gap-4 rounded-2xl border border-gold/30 bg-gold/[0.08] p-7 shadow-glow">
-        <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-gold/40 bg-gold/15">
-          <Info className="size-5 text-gold" />
+  {QUESTIONS.map((item, questionIndex) => (
+    <div
+      key={questionIndex}
+      className="glass rounded-2xl border border-border/70 p-6"
+    >
+      <div className="flex gap-4">
+        <span className="grid size-9 shrink-0 place-items-center rounded-full border border-gold/40 bg-gold/10 text-sm font-semibold text-gold">
+          {questionIndex + 1}
         </span>
-        <div>
-          <p className="font-display text-base font-semibold text-gold">
-            Os materiais e processos estão disponíveis nas áreas correspondentes do site.
-          </p>
-          <p className="mt-1.5 text-sm text-muted-foreground">
-            Em caso de dúvidas procure qualquer integrante do Time Pedagógico. Ninguém aqui precisa
-            resolver nada sozinho.
-          </p>
+
+        <div className="min-w-0 flex-1">
+          <h2 className="font-display text-base font-semibold leading-relaxed text-foreground">
+            {item.question}
+          </h2>
+
+          <div className="mt-5 space-y-3">
+            {item.options.map((option, optionIndex) => {
+              const selected = answers[questionIndex] === optionIndex;
+
+              return (
+                <button
+                  key={optionIndex}
+                  type="button"
+                  onClick={() => selectAnswer(questionIndex, optionIndex)}
+                  disabled={submitted}
+                  className={`w-full rounded-xl border p-4 text-left text-sm transition ${
+                    selected
+                      ? "border-gold/70 bg-gold/10 text-foreground"
+                      : "border-border/70 bg-secondary/20 text-muted-foreground hover:border-gold/40 hover:text-foreground"
+                  }`}
+                >
+                  <span className="mr-3 font-semibold text-gold">
+                    {String.fromCharCode(65 + optionIndex)}.
+                  </span>
+                  {option}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
+    </div>
+  ))}
+
+  {!submitted ? (
+    <button
+      type="button"
+      onClick={finishQuiz}
+      className="w-full rounded-xl bg-gold px-6 py-4 font-semibold text-primary-foreground transition hover:opacity-90"
+    >
+      Finalizar avaliação
+    </button>
+  ) : (
+    <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-7 text-center">
+      {passed ? (
+        <>
+          <p className="font-display text-2xl font-semibold text-foreground">
+            Jornada concluída! 🎉
+          </p>
+
+          <p className="mt-3 text-muted-foreground">
+            Parabéns! Você demonstrou domínio dos principais conteúdos da sua
+            integração à Febracis.
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="font-display text-2xl font-semibold text-foreground">
+            Vamos revisar alguns conteúdos.
+          </p>
+
+          <p className="mt-3 text-muted-foreground">
+            Para concluir a jornada, é necessário atingir pelo menos 80% de
+            aproveitamento.
+          </p>
+        </>
+      )}
+
+      <div className="mt-6">
+        <p className="text-4xl font-bold text-gold">
+          {score}/10
+        </p>
+
+        <p className="mt-1 text-sm text-muted-foreground">
+          {score * 10}% de aproveitamento
+        </p>
+
+        <p className="mt-3 font-semibold text-foreground">
+          Status: {passed ? "Aprovado" : "Revisão necessária"}
+        </p>
+      </div>
+
+      {!passed && (
+        <button
+          type="button"
+          onClick={retryQuiz}
+          className="mt-6 rounded-xl border border-gold/40 bg-gold/10 px-6 py-3 font-semibold text-gold transition hover:bg-gold/20"
+        >
+          Refazer avaliação
+        </button>
+      )}
+    </div>
+  )}
+</div>
+
+ 
     </div>
   );
 }
