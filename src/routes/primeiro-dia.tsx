@@ -177,6 +177,7 @@ const [answers, setAnswers] = useState<(number | null)[]>(
   Array(QUESTIONS.length).fill(null)
 );
 const [submitted, setSubmitted] = useState(false);
+const [quizStarted, setQuizStarted] = useState(false);
 const score = answers.filter(
   (answer, index) => answer === QUESTIONS[index]?.answer
 ).length;
@@ -211,7 +212,28 @@ const retryQuiz = () => {
   title="Conclusão da Jornada"
   subtitle="Chegou a hora de consolidar o que você aprendeu ao longo da sua jornada de integração."
 />
+
 <div className="mt-10 space-y-8">
+  {!quizStarted ? (
+    <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-8 text-center">
+      <p className="font-display text-2xl font-semibold text-foreground">
+        Pronto para começar?
+      </p>
+
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        Ao iniciar, você entrará no modo de avaliação. Responda todas as 10 questões antes de finalizar.
+      </p>
+
+      <button
+        type="button"
+        onClick={() => setQuizStarted(true)}
+        className="mt-6 rounded-xl bg-gold px-6 py-3 font-semibold text-primary-foreground transition hover:opacity-90"
+      >
+        Iniciar avaliação
+      </button>
+    </div>
+  ) : (
+    <>
   <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-6">
     <p className="font-display text-lg font-semibold text-foreground">
       Avaliação Final
@@ -325,10 +347,10 @@ const retryQuiz = () => {
         </button>
       )}
     </div>
+    )}
+    </>
   )}
 </div>
-
- 
-    </div>
+</div>
   );
 }
