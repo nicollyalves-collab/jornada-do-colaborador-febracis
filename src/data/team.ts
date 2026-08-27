@@ -2,7 +2,7 @@ import kauaneAvatar from "@/assets/avatars/kauane.png";
 import nayanaAvatar from "@/assets/avatars/nayana.png";
 import luanaAvatar from "@/assets/avatars/luana.png";
 import barbaraAvatar from "@/assets/avatars/barbara.png";
-import nicolyAvatar from "@/assets/avatars/nicoly.png";
+import nicolyAvatar from "@/assets/avatars/nicolly.png";
 import alineMayraAvatar from "@/assets/avatars/aline-mayra.png";
 import gabrielaAlencarAvatar from "@/assets/avatars/gabriela-alencar.png";
 
