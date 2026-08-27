@@ -11,14 +11,12 @@ export type Routine = {
 export const ROUTINES: Routine[] = [
   {
     id: "egd",
-    name: "EGD (Educação Gloval Diaria)",
+    name: "EGD (Educação Global Diaria)",
     objective: [
-      "Encontro entre times para aprendermos, nos comunicarmos com outros times e fortalecermos a cultura da empresa",
-      "Encontro de gestão e direcionamento com alinhamento de prioridades da Holding.",
-    ],
-    participants: "Setores Pedagogico, SAC, Conteudo e Mentoria",
+      "Encontro entre times para aprendermos, nos comunicarmos com outros times e fortalecermos a cultura da empresa",    ],
+    participants: "Pedagógico, SAC, Conteúdo e Mentoria",
     frequency: "Semanal",
-    periodicity: "Todas as Quintas",
+    periodicity: "Todas as Terças",
     time: "10h as 10h30",
   },
   {
@@ -28,7 +26,7 @@ export const ROUTINES: Routine[] = [
     participants: "Time pedagógico/conteudo",
     frequency: "Semanal",
     periodicity: "Semanal",
-    time: "À definir",
+    time: "No inicio das reuniões",
   },
   {
     id: "cumbuca",
@@ -36,7 +34,7 @@ export const ROUTINES: Routine[] = [
     objective: [
       "Estudo coletivo de conteúdos da empresa e desenvolvimento contínuo do time.",
     ],
-    participants: "Setores Pedagogico, SAC, Conteudo e Mentoria",
+    participants: "Pedagógico, SAC, Conteudo e Mentoria",
     frequency: "Semanal",
     periodicity: "Quartas-feiras",
     time: "14h ás 15h",
@@ -52,4 +50,15 @@ export const ROUTINES: Routine[] = [
     periodicity: "Segundas-feiras",
     time: "10h",
   },
+{
+  id: "agenda-notion",
+  name: "Agenda do Notion",
+  objective: [
+    "Registrar a semana seguinte na agenda dentro do Notion",
+  ],
+  participants: "Time pedagógico",
+  frequency: "Semanal",
+  periodicity: "Todas as Sextas",
+  time: "Até o final do expediente",
+},
 ];

@@ -35,7 +35,11 @@ function RotinasPage() {
         {ROUTINES.map((routine, i) => (
           <article
             key={routine.id}
-            className="card-lift reveal glass rounded-2xl p-7"
+className={`card-lift reveal glass rounded-2xl p-7 ${
+  i === ROUTINES.length - 1 && ROUTINES.length % 2 !== 0
+    ? "md:col-span-2 md:w-[calc(50%-0.625rem)] md:justify-self-center"
+    : ""
+}`}
             style={{ animationDelay: `${i * 90}ms` }}
           >
             <div className="flex items-start justify-between gap-4">

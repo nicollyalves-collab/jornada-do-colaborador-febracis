@@ -106,6 +106,66 @@ function FebracisPage() {
         </div>
       </div>
 
+      {/* Conteúdos complementares */}
+<section className="mt-20">
+  <SectionTitle hint="Conteúdos para aprofundar">
+    Aprofunde seu conhecimento
+  </SectionTitle>
+
+  <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+    Explore conteúdos selecionados de Paulo Vieira e Camila Vieira para conhecer
+    melhor suas ideias, abordagens e temas trabalhados dentro do ecossistema Febracis.
+  </p>
+
+  <div className="mt-6 grid gap-5 md:grid-cols-2">
+    <article className="card-lift glass rounded-2xl p-7">
+      <p className="text-[11px] uppercase tracking-[0.16em] text-gold">
+        Conteúdos selecionados
+      </p>
+
+      <h3 className="mt-2 font-display text-xl font-semibold">
+        Paulo Vieira
+      </h3>
+
+      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        Conteúdos sobre desenvolvimento humano, inteligência emocional, liderança e autorresponsabilidade.
+      </p>
+
+      <a
+        href="https://www.youtube.com/watch?v=z_R5LHBeR20&list=PLqhCb-FgTbjlQRZRZ0yIPIdJAdOY6q_UR"
+        target="_blank"
+        rel="noreferrer noopener"
+        className="mt-6 inline-flex items-center rounded-lg bg-gold px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+      >
+        Assistir conteúdos →
+      </a>
+    </article>
+
+    <article className="card-lift glass rounded-2xl p-7">
+      <p className="text-[11px] uppercase tracking-[0.16em] text-gold">
+        Conteúdos selecionados
+      </p>
+
+      <h3 className="mt-2 font-display text-xl font-semibold">
+        Camila Vieira
+      </h3>
+
+      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+        Conteúdos voltados ao desenvolvimento pessoal, identidade, liderança feminina e plenitude.
+      </p>
+
+      <a
+        href="https://www.youtube.com/watch?v=kNhLork3SqI&list=PLgpoFpF0ToQ_ZuhjrveiSWuOYLCWDIDSQ"
+        target="_blank"
+        rel="noreferrer noopener"
+        className="mt-6 inline-flex items-center rounded-lg bg-gold px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+      >
+        Assistir conteúdos →
+      </a>
+    </article>
+  </div>
+</section>
+
       {/* Ecossistema */}
       <section className="mt-20">
         <SectionTitle hint="Da estratégia ao impacto final">Entenda o Ecossistema Febracis</SectionTitle>

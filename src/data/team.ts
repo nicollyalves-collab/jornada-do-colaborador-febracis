@@ -47,7 +47,7 @@ export const TEAM: TeamMember[] = [
     id: "kauane-ribeiro",
     avatar: kauaneAvatar,
     name: "Kauane Ribeiro",
-    role: "Assistente Pedagógica",
+    role: "Analista Pedagógica",
     initials: "KR",
     fronts: [
       "Processos Pedagógicos",
@@ -190,7 +190,7 @@ export const TEAM: TeamMember[] = [
     id: "barbara-barbosa",
     avatar: barbaraAvatar,
     name: "Bárbara Barbosa",
-    role: "Assistente Pedagógica",
+    role: "Analista Pedagógica",
     initials: "BB",
     fronts: [
       "Suporte aos Treinadores",

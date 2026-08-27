@@ -120,6 +120,26 @@ function AtendimentoPage() {
         </div>
       </div>
 
+      <div className="mt-6 card-lift glass reveal rounded-2xl p-7">
+  <span className="grid size-11 place-items-center rounded-xl border border-gold/40 bg-gold/15">
+    <GraduationCap className="size-5 text-gold" />
+  </span>
+
+  <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+    Após concluir o treinamento, realize a avaliação sobre o Padrão de Comunicação no Atendimento às Franquias.
+  </p>
+
+  <Button asChild size="sm" className="mt-6 w-fit rounded-lg">
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSe3bY2R5fR8frtk1Bs-3BARckbeSwGoQwtYm-HJj99UbJTxjA/viewform?usp=header"
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      Realizar avaliação <ExternalLink className="ml-1 size-3.5" />
+    </a>
+  </Button>
+</div>
+
       <div className="mt-12 flex items-start gap-4 rounded-2xl border border-gold/30 bg-gold/[0.08] p-7 shadow-glow">
         <span className="grid size-11 shrink-0 place-items-center rounded-xl border border-gold/40 bg-gold/15">
           <Info className="size-5 text-gold" />
