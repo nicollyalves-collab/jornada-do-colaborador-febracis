@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Building2,
@@ -178,6 +178,26 @@ const [answers, setAnswers] = useState<(number | null)[]>(
 );
 const [submitted, setSubmitted] = useState(false);
 const [quizStarted, setQuizStarted] = useState(false);
+useEffect(() => {
+  if (!quizStarted || submitted) return;
+
+  const blockNavigation = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    const link = target.closest("a");
+
+    if (link && !link.closest("[data-quiz-area='true']")) {
+      event.preventDefault();
+      event.stopPropagation();
+      alert("Finalize a avaliação antes de acessar outras áreas.");
+    }
+  };
+
+  document.addEventListener("click", blockNavigation, true);
+
+  return () => {
+    document.removeEventListener("click", blockNavigation, true);
+  };
+}, [quizStarted, submitted]);
 const score = answers.filter(
   (answer, index) => answer === QUESTIONS[index]?.answer
 ).length;
@@ -213,7 +233,14 @@ const retryQuiz = () => {
   subtitle="Chegou a hora de consolidar o que você aprendeu ao longo da sua jornada de integração."
 />
 
-<div className="mt-10 space-y-8">
+<div
+  data-quiz-area="true"
+  className={
+    quizStarted && !submitted
+      ? "fixed inset-0 z-[9999] overflow-y-auto bg-background px-6 py-10"
+      : "mt-10 space-y-8"
+  }
+>
   {!quizStarted ? (
     <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-8 text-center">
       <p className="font-display text-2xl font-semibold text-foreground">
