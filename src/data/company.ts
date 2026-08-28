@@ -9,13 +9,13 @@ export type TimelineEntry = {
 export const TIMELINE: TimelineEntry[] = [
   {
     year: "1998",
-    title: "Instituto Paulo Vieira",
-    text: "Nasce o instituto que dá origem à história da companhia, com foco em desenvolvimento humano.",
+    title: "Grupo Spy",
+    text: "Primeiros treinamentos realizados pela Febracis, ainda com o nome Grupo Spy.",
   },
   {
-    year: "2009",
-    title: "Nasce a Febracis",
-    text: "O instituto passa a se chamar Febracis, reforçando o compromisso com resultados e responsabilidade.",
+    year: "2005/2006",
+    title: "Agora Febracis",
+    text: "As palestras alcançam instituições públicas e privadas renomadas.",
   },
   {
     year: "20+ anos",
@@ -56,7 +56,7 @@ export const FOUNDERS: Founder[] = [
     highlights: [
       "Especialista em negócios e referência em desenvolvimento humano",
       "Autora best-seller",
-      "Criadora de um dos maiores movimentos de mulheres do Brasil",
+      "Criadora do movimento EVA, Mulheres Experience, Jornada Plenitude e Conferência Plenitude",
     ],
   },
 ];
