@@ -53,7 +53,18 @@ function NavList({
         const link = (
           <Link
             to={item.to}
-            onClick={onNavigate}
+onClick={(event) => {
+  const quizInProgress =
+    sessionStorage.getItem("quizInProgress") === "true";
+
+  if (quizInProgress && item.to !== "/primeiro-dia") {
+    event.preventDefault();
+    alert("Finalize a avaliação antes de acessar outras áreas.");
+    return;
+  }
+
+  onNavigate?.();
+}}
             aria-current={active ? "page" : undefined}
             className={cn(
               "group flex items-center rounded-lg text-sm transition-colors duration-200",

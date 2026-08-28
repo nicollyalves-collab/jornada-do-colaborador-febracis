@@ -218,9 +218,11 @@ const finishQuiz = () => {
     return;
   }
 
-  setSubmitted(true);
+sessionStorage.removeItem("quizInProgress");
+setSubmitted(true);
 };
 const retryQuiz = () => {
+  sessionStorage.setItem("quizInProgress", "true");
   setAnswers(Array(QUESTIONS.length).fill(null));
   setSubmitted(false);
 };
@@ -235,11 +237,7 @@ const retryQuiz = () => {
 
 <div
   data-quiz-area="true"
-  className={
-    quizStarted && !submitted
-      ? "fixed inset-0 z-[9999] overflow-y-auto bg-background px-6 py-10"
-      : "mt-10 space-y-8"
-  }
+  className="mt-10 space-y-8"
 >
   {!quizStarted ? (
     <div className="rounded-2xl border border-gold/30 bg-gold/[0.06] p-8 text-center">
@@ -253,7 +251,10 @@ const retryQuiz = () => {
 
       <button
         type="button"
-        onClick={() => setQuizStarted(true)}
+onClick={() => {
+  sessionStorage.setItem("quizInProgress", "true");
+  setQuizStarted(true);
+}}
         className="mt-6 rounded-xl bg-gold px-6 py-3 font-semibold text-primary-foreground transition hover:opacity-90"
       >
         Iniciar avaliação
