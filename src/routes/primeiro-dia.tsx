@@ -77,9 +77,9 @@ const STEPS = [
 
 const QUESTIONS = [
   {
-    question: "Em que ano o Instituto Paulo Vieira passou a se chamar Febracis?",
-    options: ["1998", "2005", "2009", "2015"],
-    answer: 2,
+question: "Em 1998, qual era o nome do grupo que marcou o início da trajetória da Febracis?",
+options: ["Instituto Paulo Vieira", "Grupo Spy", "Holding Febracis", "Método CIS"],
+answer: 1,
   },
   {
     question: "Qual alternativa representa corretamente o papel da Holding Febracis dentro do ecossistema?",
